@@ -1,4 +1,4 @@
-package de.th.koeln.fae.samplemicroservice.person.models;
+package de.th.koeln.fae.samplemicroservice.person.model;
 
 import javax.persistence.Embeddable;
 

@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import de.th.koeln.fae.samplemicroservice.person.repositories.PersonRepository;
+import de.th.koeln.fae.samplemicroservice.person.model.ContactDetails;
+import de.th.koeln.fae.samplemicroservice.person.model.Gender;
+import de.th.koeln.fae.samplemicroservice.person.model.Person;
+import de.th.koeln.fae.samplemicroservice.person.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
