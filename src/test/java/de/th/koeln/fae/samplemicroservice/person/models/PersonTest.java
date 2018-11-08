@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import de.th.koeln.fae.samplemicroservice.person.model.Age;
 import de.th.koeln.fae.samplemicroservice.person.model.ContactDetails;
 import de.th.koeln.fae.samplemicroservice.person.model.Gender;
+import de.th.koeln.fae.samplemicroservice.person.model.Name;
 import de.th.koeln.fae.samplemicroservice.person.model.Person;
 import de.th.koeln.fae.samplemicroservice.person.repository.PersonRepository;
 
@@ -28,14 +30,12 @@ public class PersonTest {
   public void createPersonExpectCreated(){
     final Person person = new Person();
 
-    person.setAge(23);
+    person.setAge(new Age(23));
     person.setGender(Gender.MALE);
-    person.setForename("Jann");
-    person.setSurname("Deterling");
+    person.setForename(new Name("Jann"));
+    person.setSurname(new Name("Deterling"));
 
-    final ContactDetails contactDetails = new ContactDetails(email, phoneNumber);
-    contactDetails.setEmail("jann.deterling@th-koeln.de");
-    contactDetails.setPhoneNumber("02134 / 123456");
+    final ContactDetails contactDetails = new ContactDetails("jann.deterling@th-koeln.de", "02134 / 123456");
 
     person.setContactDetails(contactDetails);
     LOGGER.info("Person to save:");
@@ -44,7 +44,7 @@ public class PersonTest {
     final Person savedPerson = this.personRepository.save(person);
 
     assertNotNull(savedPerson);
-    assertNotNull(savedPerson.getPid());
+    assertNotNull(savedPerson.getId());
     assertEquals(person.getAge(), savedPerson.getAge());
     assertEquals(person.getForename(), savedPerson.getForename());
     assertEquals(person.getSurname(), savedPerson.getSurname());
