@@ -10,8 +10,6 @@ import de.th.koeln.fae.samplemicroservice.person.model.Person;
 
 
 @RepositoryRestResource(excerptProjection = NameProjection.class, path = "customers")
-public interface PersonRepository extends CrudRepository<Person, Long> {
-
-  Iterable<Person> findAllByAge(Age age);
+public interface PersonRepository extends CrudRepository<Person, Long>, CustomPersonRepository {
 
 }
