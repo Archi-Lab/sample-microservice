@@ -1,5 +1,8 @@
 package de.th.koeln.fae.samplemicroservice.person.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -15,8 +18,12 @@ public class Person extends AbstractEntity {
   @Embedded
   private ContactDetails contactDetails;
 
+  @Embedded
+  @AttributeOverrides(value = {@AttributeOverride(name = "value", column = @Column(name="forename"))})
   private Name forename;
 
+  @Embedded
+  @AttributeOverrides(value = {@AttributeOverride(name = "value", column = @Column(name="surname"))})
   private Name surname;
 
   @Embedded

@@ -1,10 +1,12 @@
 package de.th.koeln.fae.samplemicroservice.person.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Age {
 
+  @Column(name="age")
   private final Integer value;
 
   public Age(){

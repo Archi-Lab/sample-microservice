@@ -2,10 +2,12 @@ package de.th.koeln.fae.samplemicroservice.person.model;
 
 import java.util.regex.Pattern;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Name {
+
 
   private final String value;
 

@@ -2,7 +2,10 @@ package de.th.koeln.fae.samplemicroservice.person.model;
 
 import javax.persistence.Embeddable;
 
+import lombok.NoArgsConstructor;
+
 @Embeddable
+@NoArgsConstructor
 public class ContactDetails {
 
   public ContactDetails(String email, String phoneNumber){

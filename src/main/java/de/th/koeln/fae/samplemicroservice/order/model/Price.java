@@ -1,7 +1,12 @@
 package de.th.koeln.fae.samplemicroservice.order.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Price {
 
+  @Column(name="price")
   private final Double value;
 
   public Price(){
