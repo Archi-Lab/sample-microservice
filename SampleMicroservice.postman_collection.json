@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "6b80abde-0584-49ba-8022-401388383d91",
+		"name": "SampleMicroservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lineItems\": [\n\t\t{\n\t      \"item\": \"EGG\",\n\t      \"amount\": {\n\t        \"value\": 2\n\t      },\n\t      \"price\": {\n\t        \"value\": 12\n\t      }\n\t    },\n\t    {\n\t      \"item\": \"MILK\",\n\t      \"amount\": {\n\t        \"value\": 10\n\t      },\n\t      \"price\": {\n\t        \"value\": 3\n\t      }\n\t    }\n    ],\n\t\"customer\": \"http://localhost:8080/customer/1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/orders/2/pay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/2/pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"2",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/orders/2/cancel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/2/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"2",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/customers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"gender\": \"MALE\",\r\n  \"contactDetails\": {\r\n    \"email\": \"max.mustermann@th-koeln.de\",\r\n    \"phoneNumber\": \"02134 / 123456\"\r\n  },\r\n  \"forename\": {\r\n    \"value\": \"Max\"\r\n  },\r\n  \"surname\": {\r\n    \"value\": \"Mustermann\"\r\n  },\r\n  \"age\": {\r\n    \"value\": 23\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
