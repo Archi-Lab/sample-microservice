@@ -9,7 +9,6 @@ import de.th.koeln.fae.samplemicroservice.order.model.Amount;
 import de.th.koeln.fae.samplemicroservice.order.model.Item;
 import de.th.koeln.fae.samplemicroservice.order.model.LineItem;
 import de.th.koeln.fae.samplemicroservice.order.model.Order;
-import de.th.koeln.fae.samplemicroservice.order.model.PersonId;
 import de.th.koeln.fae.samplemicroservice.order.model.Price;
 import de.th.koeln.fae.samplemicroservice.order.repository.LineItemRepository;
 import de.th.koeln.fae.samplemicroservice.order.repository.OrderRepository;
@@ -48,11 +47,8 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     final Person savedPerson = this.personRepository.save(person);
 
     final Order order = new Order();
-    order.setPersonId(new PersonId(savedPerson.getId()));
+    order.addCustomer(savedPerson);
+    order.addLineItem(new LineItem(Item.EGG, new Amount(2), new Price(12.0)));
     final Order savedOrder = orderRepository.save(order);
-
-    LineItem lineItem = lineItemRepository.save(new LineItem(savedOrder, Item.EGG, new Amount(2), new Price(12.0)));
-
-
   }
 }

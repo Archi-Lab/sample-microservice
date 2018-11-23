@@ -8,14 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 
 import de.th.koeln.fae.samplemicroservice.core.AbstractEntity;
+import lombok.Data;
+import lombok.Setter;
 
 @Entity(name = "person")
+@Data
 public class Person extends AbstractEntity {
 
   @Enumerated
   private Gender gender;
 
   @Embedded
+
   private ContactDetails contactDetails;
 
   @Embedded

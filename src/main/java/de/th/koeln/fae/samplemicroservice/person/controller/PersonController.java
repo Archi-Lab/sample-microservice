@@ -18,6 +18,7 @@ import de.th.koeln.fae.samplemicroservice.person.repository.PersonRepository;
 public class PersonController {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+
   private final PersonRepository personRepository;
 
   @Autowired

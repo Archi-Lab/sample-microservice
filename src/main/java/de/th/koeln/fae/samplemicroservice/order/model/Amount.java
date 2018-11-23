@@ -3,10 +3,13 @@ package de.th.koeln.fae.samplemicroservice.order.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
-@Data
+@Setter(AccessLevel.NONE)
+@Getter
 public class Amount {
 
   @Column(name="amount")
