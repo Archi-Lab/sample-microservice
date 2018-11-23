@@ -5,13 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 
 import de.th.koeln.fae.samplemicroservice.core.AbstractEntity;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
-@Setter
+@Setter(AccessLevel.NONE)
 @Getter
 public class LineItem extends AbstractEntity {
 
