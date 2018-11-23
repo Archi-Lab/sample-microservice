@@ -64,16 +64,20 @@ public class Order extends AbstractEntity {
     this.customer = customer;
   }
 
-  public void markPaid() throws OrderException {
+  public void pay() throws OrderException {
     if (this.status.equals(OrderStatus.OPEN)) {
       this.status = OrderStatus.PAID;
     } else {
-      throw new OrderException("Illegal Process, your order is allready paid or cancelled.");
+      throw new OrderException("Illegal Process could not mark the order as paid, your order is already paid or cancelled.");
     }
   }
 
-  public void markCancelled() {
-
+  public void cancel() throws OrderException {
+    if (this.status.equals(OrderStatus.OPEN)) {
+      this.status = OrderStatus.CANCELLED;
+    } else {
+      throw new OrderException("Illegal Process could not mark the order as cancelled, your order is already paid or cancelled");
+    }
   }
 
 }
