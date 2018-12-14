@@ -1,0 +1,29 @@
+version: '3'
+services: #Angabe aller Services
+  service: # Sample Microservice
+    build: . # Der Service basiert auf einer Dockerfile in dem directory "."
+    depends_on: # Der Service wartet auf den Start der DB.
+      - db
+    networks: # Netzwerk für die DB und dem Microservice
+      - sample_ms_db
+    ports: # Ports des Service die an die Host-Maschine übertragen werden.
+      - 8080:8080
+  # Spezifikation der Datenbank
+  db: # Sample DB
+    image: postgres:10.1 # Basis Image
+    volumes:
+        - sample_db:/var/lib/postgresql/data # Volume um Daten persistent zu speichern. Alle Daten aus dem Pfad (rechts) werden in das Volume abgelegt.
+    environment: # Konfiguration über env-Variablen
+        - POSTGRES_PASSWORD=_sample_Service_2018
+        - POSTGRES_USER=sampleService
+        - POSTGRES_DB=sampleService
+        - PGDATA=/var/lib/postgresql/data/pgdata
+        - JAVA_TOOL_OPTIONS=-Xms128m -Xmx256m
+    restart: always # Bei einem Abstaurz soll die DB immer neu starten.
+    networks: # Netzwerk für die DB und dem Microservice
+      - sample_ms_db
+volumes: # Allgemeine Volumes für das Projekt
+  sample_db: {}
+networks: # Allgemeine Netzwerke für das Projekt
+  sample_ms_db:
+    driver: brigde

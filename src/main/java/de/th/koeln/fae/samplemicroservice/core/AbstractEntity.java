@@ -8,6 +8,10 @@ import javax.persistence.MappedSuperclass;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Abstrakte Klasse einer Entität, durch Vererbung erhält so jede Klasse eine ID.
+ * Spart ein paar Zeilen Code pro Entität
+ */
 @MappedSuperclass
 public abstract class AbstractEntity {
 

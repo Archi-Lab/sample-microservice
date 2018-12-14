@@ -9,6 +9,7 @@ import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
@@ -17,18 +18,30 @@ import de.th.koeln.fae.samplemicroservice.order.model.OrderException;
 import de.th.koeln.fae.samplemicroservice.order.model.OrderStatus;
 import de.th.koeln.fae.samplemicroservice.order.repository.OrderRepository;
 
-@RepositoryRestController
+/**
+ * OrderController, stellt eine Restschnittstell für Orders bereit.
+ */
+
+@RepositoryRestController /* Sagt Spring Data Rest, dass ein Repository mit dieser Klasse erweitert wird. */
+@RequestMapping("/orders") /* Mappt einen Request URI auf die gesamte Klasse.*/
 public class OrderController {
 
+  /* Repository Objekt  für die Orders, durch dieses Objekt können die Daten von der Datenbank abgerufen und verändert werden*/
   private final OrderRepository orderRepository;
 
+  /* @Autowired zeigt spring das die Parameter dieses Constructors initialisiert und übergeben werden müssen */
   @Autowired
   public OrderController(
       OrderRepository orderRepository) {
     this.orderRepository = orderRepository;
   }
 
-  @PostMapping(path = "/orders/{id}/pay")
+  /* Diese Methode kann auf der URI "/{id}/pay" mit dem HTTP-POST aufgerufen werden.
+   * @PathVariable("id") entnimmt der URI den Parameter ID wie oben angegeben, dieser
+   * wird in die Variable id gespeichert.
+   *
+   * */
+  @PostMapping(path = "/{id}/pay")
   public ResponseEntity<?> postPay(@PathVariable("id") Long id) {
     final Optional<Order> optionalOrder = this.orderRepository.findById(id);
     if (optionalOrder.isPresent()) {
@@ -45,7 +58,7 @@ public class OrderController {
     }
   }
 
-  @PostMapping(path = "/orders/{id}/cancel")
+  @PostMapping(path = "/{id}/cancel")
   public ResponseEntity<?> postCancel(@PathVariable("id") Long id) {
     final Optional<Order> optionalOrder = this.orderRepository.findById(id);
     if (optionalOrder.isPresent()) {
@@ -62,6 +75,10 @@ public class OrderController {
     }
   }
 
+  /*
+  * Diese Methode beschreibt wie eine Resource des Types Order zu erweitern.
+  * Hierbei werden verschiedene Links an die Resource hinzugefügt.
+  * */
   @Bean
   public ResourceProcessor<Resource<Order>> personProcessor() {
 
