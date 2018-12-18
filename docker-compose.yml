@@ -26,4 +26,4 @@ volumes: # Allgemeine Volumes für das Projekt
   sample_db: {}
 networks: # Allgemeine Netzwerke für das Projekt
   sample_ms_db:
-    driver: brigde
+    driver: bridge

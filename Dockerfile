@@ -1,5 +1,5 @@
 #Basis Image
-FROM openjdk:11-jre-alpine
+FROM openjdk:12-jdk-alpine
 #Port Freigeben für Docker
 EXPOSE 8080
 #Kopieren des Artefakts auf den Container

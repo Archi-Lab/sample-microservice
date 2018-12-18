@@ -1,19 +1,19 @@
 package de.th.koeln.fae.samplemicroservice.order.model;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 
 @Embeddable
-@Setter(AccessLevel.NONE)
 @Getter
+@Access(AccessType.FIELD)
 public class Amount {
 
   @Column(name="amount")
-  private final Integer value;
+  private Integer value;
 
   protected Amount() {
     this.value = null;

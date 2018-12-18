@@ -5,12 +5,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.th.koeln.fae.samplemicroservice.core.AbstractEntity;
 import de.th.koeln.fae.samplemicroservice.person.model.Person;
@@ -21,9 +27,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "table_order")
 @Getter
-@Setter(AccessLevel.NONE)
-public class Order extends AbstractEntity {
+public class Order  {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @JsonIgnore
+  private Long id;
+
+  public Long getId() {
+    return id;
+  }
 
   private OrderStatus status;
 
@@ -31,7 +44,7 @@ public class Order extends AbstractEntity {
   @JoinColumn(name = "person_id")
   private Person customer;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @ElementCollection
   @JoinColumn(name = "order_id")
   private List<LineItem> lineItems;
 

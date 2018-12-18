@@ -1,5 +1,8 @@
 package de.th.koeln.fae.samplemicroservice.order.model;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -10,20 +13,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Embeddable
 @AllArgsConstructor
-@Setter(AccessLevel.NONE)
 @Getter
-public class LineItem extends AbstractEntity {
+@Access(AccessType.FIELD)
+public class LineItem {
 
   @Enumerated
-  private final Item item;
+  private  Item item;
 
   @Embedded
-  private final Amount amount;
+  private  Amount amount;
 
   @Embedded
-  private final Price price;
+  private  Price price;
 
   protected LineItem(){
 
